@@ -39,19 +39,42 @@ importers:
       vite: 2.2.1
       vite-plugin-package-config: 0.1.0_vite@2.2.1
 
-  example:
+  example/basic:
     specifiers:
       '@types/lodash': ^4.14.171
       lodash: ^4.17.21
       typescript: ^4.3.2
       vite: ^2.4.4
       vite-plugin-optimize-persist: workspace:*
+    dependencies:
+      lodash: 4.17.21
     devDependencies:
       '@types/lodash': 4.14.171
-      lodash: 4.17.21
       typescript: 4.3.5
       vite: 2.4.4
-      vite-plugin-optimize-persist: link:..
+      vite-plugin-optimize-persist: link:../..
+
+  example/monorepo/bar:
+    specifiers:
+      '@types/lodash': ^4.14.171
+      lodash: ^4.17.21
+    dependencies:
+      lodash: 4.17.21
+    devDependencies:
+      '@types/lodash': 4.14.171
+
+  example/monorepo/foo:
+    specifiers:
+      example-monorepo-bar: workspace:*
+      typescript: ^4.3.2
+      vite: ^2.4.4
+      vite-plugin-optimize-persist: workspace:*
+    dependencies:
+      example-monorepo-bar: link:../bar
+    devDependencies:
+      typescript: 4.3.5
+      vite: 2.4.4
+      vite-plugin-optimize-persist: link:../../..
 
 packages:
 
@@ -2051,7 +2074,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-symbols/4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}

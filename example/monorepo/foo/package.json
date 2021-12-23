@@ -1,14 +1,15 @@
 {
-  "name": "example",
+  "name": "example-monorepo-foo",
   "version": "0.0.0",
   "scripts": {
     "dev": "DEBUG=vite-plugin-optimize-persist vite --force",
     "build": "vite build",
     "serve": "vite preview"
   },
+  "dependencies": {
+    "example-monorepo-bar": "workspace:*"
+  },
   "devDependencies": {
-    "@types/lodash": "^4.14.171",
-    "lodash": "^4.17.21",
     "typescript": "^4.3.2",
     "vite": "^2.4.4",
     "vite-plugin-optimize-persist": "workspace:*"
@@ -19,9 +20,12 @@
     },
     "optimizeDeps": {
       "include": [
-        "lodash/map",
-        "lodash/set",
-        "lodash/upperCase"
+        "example-monorepo-bar > lodash/map",
+        "example-monorepo-bar > lodash/set",
+        "example-monorepo-bar > lodash/upperCase"
+      ],
+      "exclude": [
+        "example-monorepo-bar"
       ]
     }
   }
